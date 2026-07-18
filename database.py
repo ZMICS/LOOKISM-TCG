@@ -5,9 +5,7 @@ cursor.execute("""
 CREATE TABLE IF NOT EXISTS players (
     discord_id INTEGER PRIMARY KEY,
     username TEXT NOT NULL,
-    tokens INTEGER DEFAULT 250
-    level INTEGER DEFAULT 1,
-    xp INTEGER DEFAULT 0,
+    tokens INTEGER DEFAULT 250,
     wins INTEGER DEFAULT 0,
     losses INTEGER DEFAULT 0
 )
