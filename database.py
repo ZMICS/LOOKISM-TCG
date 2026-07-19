@@ -6,8 +6,6 @@ CREATE TABLE IF NOT EXISTS players (
     discord_id INTEGER PRIMARY KEY,
     username TEXT NOT NULL,
     tokens INTEGER DEFAULT 250,
-    level INTEGER DEFAULT 1,
-    xp INTEGER DEFAULT 0,
     wins INTEGER DEFAULT 0,
     losses INTEGER DEFAULT 0
 )
@@ -46,3 +44,29 @@ def update_username(discord_id, username):
         (username, discord_id)
     )
     connection.commit()
+
+    #Token functions
+    
+def get_tokens(discord_id):
+    cursor.execute(
+        "SELECT tokens FROM players WHERE discord_id = ?",
+        (discord_id)
+    )
+    result = cursor.fetchone()
+    if result:
+         return result[0]
+    return None
+ 
+def add_tokens(discord_id, amount):
+    cursor.execute(
+        """
+        UPDATE players
+        SET tokens = tokens + ?
+        WHERE discord_id = ?
+        """,
+        (amount, discord_id)
+    )
+    connection.commit()
+
+
+
