@@ -69,7 +69,7 @@ def add_tokens(discord_id, amount):
     connection.commit()
 
 def spend_tokens(discord_id, amount):
-    current_tokens = get_tokens(discord_id)
+    current_tokens = get_tokens(discord_id, )
     if current_tokens is None:
         return False
     if current_tokens < amount:
