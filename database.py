@@ -1,6 +1,8 @@
 import sqlite3
 connection = sqlite3.connect("lookism.db")
 cursor = connection.cursor()
+
+#players table
 cursor.execute("""
 CREATE TABLE IF NOT EXISTS players (
     discord_id INTEGER PRIMARY KEY,
@@ -10,6 +12,35 @@ CREATE TABLE IF NOT EXISTS players (
     losses INTEGER DEFAULT 0
 )
 """)
+
+#cards table
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS cards(
+    card_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    card_name TEXT NOT NULL,
+    rarity TEXT NOT NULL,
+    base_hp INTEGER not NULL,
+    base_attack INTEGER NOT NULL,
+    base_defense INTEGER NOT NULL,
+    punch_damage INTEGER NOT NULL,
+    kick_damage INTEGER NOT NULL
+)
+""")
+
+# inventory table
+
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS inventory(
+    inventory_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    discord_id INTEGER NOT NULL,
+    card_id INTEGER NOT NULL,
+    level INTEGER DEFAUKT 1,
+    xp INTEGER DEFAULT 0,
+    FOREIGN KEY(discord_id) REFERENCES players(discord_id),
+    FORIEGN KEY(card_id) REFERENCES cards(card_id)
+)
+""")
+
 connection.commit()
 
 # Player Functions
@@ -45,7 +76,7 @@ def update_username(discord_id, username):
     )
     connection.commit()
 
-    #Token functions
+#Token functions
     
 def get_tokens(discord_id):
     cursor.execute(
@@ -85,4 +116,37 @@ def spend_tokens(discord_id, amount):
     connection.commit()
     return True
         
+# Win loss functions
 
+def add_win(discord_id):
+    cursor.execute(
+        """
+        UPDATE players
+        SET wins = wins + 1
+        WHERE discord_id = ?
+        """,
+        (discord_id,)
+    )
+    connection.commit()
+
+def add_loss(discord_id):
+    cursor.execute(
+        """
+        UPDATE players
+        SET losses = losses + 1
+        WHERE discord_id = ?
+        """,
+        (discord_id,)
+    )
+    connection.commit()
+
+def get_stats(discord_id):
+    cursor.execute(
+        """
+        SELECT wins,losses
+        FROM players
+        WHERE discord_id = ?
+        """,
+        (discord_id,)
+    )
+    return cursor.fetchone()
