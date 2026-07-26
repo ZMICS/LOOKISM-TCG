@@ -102,7 +102,7 @@ cards = [
         "id": "hanpark_1",
         "name": "Han Park",
         "rank": "D",
-        "type": "fight",
+        "type": "Fighter",
         "upgrade_stage": 1,
         "ui_mode": None,
         "path": None,
