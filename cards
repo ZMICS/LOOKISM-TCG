@@ -1,0 +1,450 @@
+import random
+cards = [ 
+    {
+        "id": "daniel_1",
+        "name": "Daniel Park",
+        "rank": "D",
+        "type": "Fighter",
+        "upgrade_stage": 1,
+        "ui_mode": None,
+        "path": None,
+        "attack": 20,
+        "hp": 30,
+        "defense": 20,
+        "speed": 10,
+        "image": None
+    },
+    {
+        "id": "zack_1",
+        "name": "Zack Lee",
+        "rank": "D",
+        "type": "Fighter",
+        "upgrade_stage": 1,
+        "ui_mode": None,
+        "path": None,
+        "attack": 40,
+        "hp": 30,
+        "defense": 30,
+        "speed": 20,
+        "image": None
+    },
+    {
+        "id": "eli_1",
+        "name": "Eli Jang",
+        "rank": "D",
+        "type": "Fighter",
+        "upgrade_stage": 1,
+        "ui_mode": None,
+        "path": None,
+        "attack": 40,
+        "hp": 50,
+        "defense": 40,
+        "speed": 30,
+        "image": None
+    },
+    {
+        "id": "vinjin_1",
+        "name": "Vin Jin",
+        "rank": "D",
+        "type": "Fighter",
+        "upgrade_stage": 1,
+        "ui_mode": None,
+        "path": None,
+        "attack": 45,
+        "hp": 40,
+        "defense": 30,
+        "speed": 30,
+        "image": None
+    },
+    {
+        "id": "vasco_1",
+        "name": "Vasco",
+        "rank": "D",
+        "type": "Fighter",
+        "upgrade_stage": 1,
+        "ui_mode": None,
+        "path": None,
+        "attack": 60,
+        "hp": 50,
+        "defense": 50,
+        "speed": 40,
+        "image": None
+    },
+    {
+        "id": "jay_1",
+        "name": "Jay Hong",
+        "rank": "D",
+        "type": "Fighter",
+        "upgrade_stage": 1,
+        "ui_mode": None,
+        "path": None,
+        "attack": 35,
+        "hp": 35,
+        "defense": 30,
+        "speed": 45,
+        "image": None
+    },
+    {
+        "id": "doolee_1",
+        "name": "Doo Lee",
+        "rank": "D",
+        "type": "Fighter",
+        "upgrade_stage": 1,
+        "ui_mode": None,
+        "path": None,
+        "attack": 15,
+        "hp": 25,
+        "defense": 15,
+        "speed": 10,
+        "image": None
+    },
+    {
+        "id": "hanpark_1",
+        "name": "Han Park",
+        "rank": "D",
+        "type": "fight",
+        "upgrade_stage": 1,
+        "ui_mode": None,
+        "path": None,
+        "attack": 10,
+        "hp": 20,
+        "defense": 15,
+        "speed": 10,
+        "image": None
+    },
+    {
+        "id": "kayjang_1",
+        "name": "Kay Jang",
+        "rank": "D",
+        "type": "Fighter",
+        "upgrade_stage": 1,
+        "ui_mode": None,
+        "path": None,
+        "attack": 30,
+        "hp": 30,
+        "defense": 25,
+        "speed": 25,
+        "image": None
+    },
+    {
+        "id": "jace_1",
+        "name": "Jace Park",
+        "rank": "D",
+        "type": "Fighter",
+        "upgrade_stage": 1,
+        "ui_mode": None,
+        "path": None,
+        "attack": 20,
+        "hp": 30,
+        "defense": 25,
+        "speed": 20,
+        "image": None
+    },
+    {
+        "id": "jiho_1",
+        "name": "Jiho Park",
+        "rank": "D",
+        "type": "Fighter",
+        "upgrade_stage": 1,
+        "ui_mode": None,
+        "path": None,
+        "attack": 25,
+        "hp": 25,
+        "defense": 20,
+        "speed": 20,
+        "image": None
+    },
+    {
+        "id": "gun_1",
+        "name": "Gun Park",
+        "rank": "D",
+        "type": "Fighter",
+        "upgrade_stage": 1,
+        "ui_mode": None,
+        "path": None,
+        "attack": 75,
+        "hp": 70,
+        "defense": 70,
+        "speed": 65,
+        "image": None
+    },
+    {
+        "id": "gangnam_landlord_1",
+        "name": "Gangnam Landlord",
+        "rank": "D",
+        "type": "Fighter",
+        "upgrade_stage": 1,
+        "ui_mode": None,
+        "path": None,
+        "attack": 10,
+        "hp": 25,
+        "defense": 15,
+        "speed": 10,
+        "image": None
+    },
+    {
+        "id": "crystal_1",
+        "name": "Crystal Choi",
+        "rank": "D",
+        "type": "Fighter",
+        "upgrade_stage": 1,
+        "ui_mode": None,
+        "path": None,
+        "attack": 10,
+        "hp": 25,
+        "defense": 15,
+        "speed": 20,
+        "image": None
+    },
+    {
+    "id": "mira_1",
+    "name": "Mira",
+    "rank": "D",
+    "type": "Boost",
+    "upgrade_stage": 1,
+    "ui_mode": None,
+    "path": None,
+
+    "effect": {
+        "target": "Zack Lee",
+        "stat": "attack",
+        "value": 3,
+        "unit": "percent"
+    },
+
+    "image": None
+},
+{
+    "id": "zoey_1",
+    "name": "Zoey",
+    "rank": "D",
+    "type": "Boost",
+    "upgrade_stage": 1,
+    "ui_mode": None,
+    "path": None,
+
+    "effect": {
+        "target": "Daniel Park",
+        "stat": "attack",
+        "value": 3,
+        "unit": "percent"
+    },
+
+    "image": None
+},
+{
+    "id": "yuikim_1",
+    "name": "Yui Kim",
+    "rank": "D",
+    "type": "Boost",
+    "upgrade_stage": 1,
+    "ui_mode": None,
+    "path": None,
+
+    "effect": {
+        "target": "Zack Lee",
+        "stat": "attack",
+        "value": 2,
+        "unit": "percent"
+    },
+
+    "image": None
+},
+{
+    "id": "daniel_second_body_1",
+    "name": "Daniel Park",
+    "rank": "D",
+    "form": "Second Body",
+    "type": "Fighter",
+    "upgrade_stage": 1,
+    "ui_mode": None,
+    "path": None,
+    "attack": 50,
+    "hp": 50,
+    "defense": 40,
+    "speed": 40,
+    "image": None
+},
+]
+def get_card_by_id(card_id):
+    for card in cards:
+        if card["id"] == card_id:
+            return card
+    return None
+def get_card_by_name(name):
+    for card in cards:
+        if card["name"] == name:
+            return card
+    return None
+def get_cards_by_type(card_type):
+    result = []
+
+    for card in cards:
+        if card["type"] == card_type:
+            result.append(card)
+
+    return result
+def show_all_cards():
+    return cards
+def show_card(card_id):
+    card = get_card_by_id(card_id)
+
+    if card is None:
+        print("Card not found!")
+        return
+
+    print("=========================")
+    print("Name:", card["name"])
+
+    if "form" in card:
+        print("Form:", card["form"])
+
+    print("Type:", card["type"])
+    print("Upgrade Stage:", card["upgrade_stage"])
+    print("UI Mode:", card["ui_mode"])
+    print("Path:", card["path"])
+
+    if card["type"] == "Fighter":
+        print("Attack:", card["attack"])
+        print("HP:", card["hp"])
+        print("Defense:", card["defense"])
+        print("Speed:", card["speed"])
+
+    elif card["type"] == "Boost":
+        print("Effect:", card["effect"])
+
+    print("=========================")
+def get_character_cards(character_name):
+    character_cards = []
+
+    for card in cards:
+        if card["name"] == character_name:
+            character_cards.append(card)
+
+    return character_cards
+def get_strongest_fighter():
+    strongest = None
+
+    for card in cards:
+        if card["type"] != "Fighter":
+            continue
+
+        if strongest is None:
+            strongest = card
+
+        elif card["attack"] > strongest["attack"]:
+            strongest = card
+
+    return strongest
+def get_battle_power(card):
+    if card["type"] != "Fighter":
+        return 0
+
+    battle_power = (
+        card["attack"] +
+        card["hp"] +
+        card["defense"] +
+        card["speed"]
+    )
+
+    return battle_power
+def show_battle_power():
+    for card in cards:
+        if card["type"] == "Fighter":
+            power = get_battle_power(card)
+            print(f"{card['name']} : {power}") 
+def upgrade_to_c_rank(card, attack_increase, hp_increase, defense_increase, speed_increase):
+    if card["type"] != "Fighter":
+        return None
+
+    upgraded = card.copy()
+
+    upgraded["rank"] = "C"
+    upgraded["upgrade_stage"] = 2
+
+    upgraded["attack"] += attack_increase
+    upgraded["hp"] += hp_increase
+    upgraded["defense"] += defense_increase
+    upgraded["speed"] += speed_increase
+
+    return upgraded
+def upgrade_card(card):
+    current_id = card["id"]
+
+    # Split the ID into character name and stage number
+    name, stage = current_id.rsplit("_", 1)
+
+    # Calculate the next stage
+    next_stage = int(stage) + 1
+
+    # Create the next card ID
+    next_id = f"{name}_{next_stage}"
+
+    # Return the next card
+    return get_card_by_id(next_id)
+import random
+
+def upgrade_card(card):
+    if card["type"] != "Fighter":
+        return None
+
+    upgraded = card.copy()
+
+    # Maximum rank check
+    if upgraded["rank"] == "S":
+        print("This card is already at the maximum rank.")
+        return upgraded
+
+    # Rank progression
+    rank_order = {
+        "D": "C",
+        "C": "B",
+        "B": "A",
+        "A": "S"
+    }
+
+    upgraded["rank"] = rank_order[upgraded["rank"]]
+
+    # Increase upgrade stage
+    upgraded["upgrade_stage"] += 1
+
+    # Increase stats
+    upgraded["attack"] += random.randint(20, 40)
+    upgraded["hp"] += random.randint(20, 40)
+    upgraded["defense"] += random.randint(20, 40)
+    upgraded["speed"] += random.randint(20, 40)
+
+    return upgraded
+def display_card(card):
+    print("========== CARD ==========")
+    print("Name :", card["name"])
+
+    if "form" in card:
+        print("Form :", card["form"])
+
+    print("Type :", card["type"])
+    print("Rank :", card["rank"])
+    print("Stage:", card["upgrade_stage"])
+    print("ATK  :", card["attack"])
+    print("HP   :", card["hp"])
+    print("DEF  :", card["defense"])
+    print("SPD  :", card["speed"])
+    print("==========================")
+def roll_fighter():
+    fighters = []
+
+    for card in cards:
+        if card["type"] == "Fighter":
+            fighters.append(card)
+
+    return random.choice(fighters)
+def roll_card():
+    return roll_fighter()
+def roll_boost():
+    boosts = []
+
+    for card in cards:
+        if card["type"] == "Boost":
+            boosts.append(card)
+
+    return random.choice(boosts)
