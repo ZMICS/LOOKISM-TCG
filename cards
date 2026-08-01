@@ -166,7 +166,7 @@ cards = [
         "hp": 70,
         "defense": 70,
         "speed": 65,
-        "image": None
+        "image": "assets/gun.png"
     },
     {
         "id": "gangnam_landlord_1",
@@ -263,6 +263,46 @@ cards = [
     "hp": 50,
     "defense": 40,
     "speed": 40,
+    "image": None
+},
+{
+    "id": "token_10",
+    "name": "10 Tokens",
+    "type": "Token",
+    "tokens": 10,
+    "rarity": "Common",
+    "image": None
+},
+{
+    "id": "token_20",
+    "name": "20 Tokens",
+    "type": "Token",
+    "tokens": 20,
+    "rarity": "Rare",
+    "image": None
+},
+{
+    "id": "token_50",
+    "name": "50 Tokens",
+    "type": "Token",
+    "tokens": 50,
+    "rarity": "Epic",
+    "image": None
+},
+{
+    "id": "token_100",
+    "name": "100 Tokens",
+    "type": "Token",
+    "tokens": 100,
+    "rarity": "Legendary",
+    "image": None
+},
+{
+    "id": "token_500",
+    "name": "500 Tokens",
+    "type": "Token",
+    "tokens": 500,
+    "rarity": "Mythic",
     "image": None
 },
 ]
@@ -369,22 +409,6 @@ def upgrade_to_c_rank(card, attack_increase, hp_increase, defense_increase, spee
 
     return upgraded
 def upgrade_card(card):
-    current_id = card["id"]
-
-    # Split the ID into character name and stage number
-    name, stage = current_id.rsplit("_", 1)
-
-    # Calculate the next stage
-    next_stage = int(stage) + 1
-
-    # Create the next card ID
-    next_id = f"{name}_{next_stage}"
-
-    # Return the next card
-    return get_card_by_id(next_id)
-import random
-
-def upgrade_card(card):
     if card["type"] != "Fighter":
         return None
 
@@ -438,8 +462,25 @@ def roll_fighter():
             fighters.append(card)
 
     return random.choice(fighters)
+def roll_token():
+    tokens = []
+
+    for card in cards:
+        if card["type"] == "Token":
+            tokens.append(card)
+
+    return random.choice(tokens)
 def roll_card():
-    return roll_fighter()
+    chance = random.randint(1, 100)
+
+    if chance <= 70:
+        return roll_fighter()
+
+    elif chance <= 90:
+        return roll_boost()
+
+    else:
+        return roll_token()
 def roll_boost():
     boosts = []
 
