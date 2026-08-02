@@ -33,8 +33,10 @@ CREATE TABLE IF NOT EXISTS inventory(
     inventory_id INTEGER PRIMARY KEY AUTOINCREMENT,
     discord_id INTEGER NOT NULL,
     card_id INTEGER NOT NULL,
+    quantity INTEGER DEFAULT 1,
     level INTEGER DEFAULT 1,
     xp INTEGER DEFAULT 0,
+    upgrade_stage INTEGER DEFAULT 1,
     FOREIGN KEY(discord_id) REFERENCES players(discord_id),
     FOREIGN KEY(card_id) REFERENCES cards(card_id)
 )
@@ -233,6 +235,17 @@ def get_inventory_row(discord_id, card_id):
 def get_inventory(discord_id):
     cursor.execute("SELECT * FROM inventory WHERE discord_id = ?", (discord_id,))
     return cursor.fetchall()
+
+def get_card_quantity(discord_id, card_id):
+    cursor.execute(
+        "SELECT quantity FROM inventory WHERE discord_id = ? AND card_id = ?",
+        (discord_id, card_id)
+    )
+    result = cursor.fetchone()
+    if result:
+        return result[0]
+
+    return 0
 
 def update_quantity(discord_id, card_id, quantity):
     cursor.execute(
