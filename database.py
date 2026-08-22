@@ -1,7 +1,6 @@
 import sqlite3
 connection = sqlite3.connect("lookism.db")
 cursor = connection.cursor()
-cursor.execute("PRAGMA foreign_keys = ON")
 
 #players table
 cursor.execute("""
@@ -19,15 +18,12 @@ cursor.execute("""
 CREATE TABLE IF NOT EXISTS cards(
     card_id INTEGER PRIMARY KEY AUTOINCREMENT,
     card_name TEXT NOT NULL,
-    card_type TEXT NOT NULL,
     rarity TEXT NOT NULL,
     base_hp INTEGER NOT NULL,
     base_attack INTEGER NOT NULL,
     base_defense INTEGER NOT NULL,
     punch_damage INTEGER NOT NULL,
-    kick_damage INTEGER NOT NULL,
-    power INTEGER DEFAULT 0,
-    speed INTEGER NOT NULL
+    kick_damage INTEGER NOT NULL
 )
 """)
 
@@ -42,8 +38,7 @@ CREATE TABLE IF NOT EXISTS inventory(
     xp INTEGER DEFAULT 0,
     upgrade_stage INTEGER DEFAULT 1,
     FOREIGN KEY(discord_id) REFERENCES players(discord_id),
-    FOREIGN KEY(card_id) REFERENCES cards(card_id),
-    UNIQUE(discord_id, card_id)
+    FOREIGN KEY(card_id) REFERENCES cards(card_id)
 )
 """)
 
@@ -170,13 +165,13 @@ def get_stats(discord_id):
 
 # Card Functions
 
-def create_card(card_name, card_type,  rarity, base_hp, base_attack, base_defense, punch_damage, kick_damage, speed, power):
+def create_card(card_name, rarity, base_hp, base_attack, base_defense, punch_damage, kick_damage):
     cursor.execute(
         """
-        INSERT INTO cards (card_name, card_type, rarity, base_hp, base_attack, base_defense, punch_damage, kick_damage, speed, power)
+        INSERT INTO cards (card_name, rarity, base_hp, base_attack, base_defense, punch_damage, kick_damage)
         VALUES (?, ?, ?, ?, ?, ?, ?)
         """,
-        (card_name, card_type, rarity, base_hp, base_attack, base_defense, punch_damage, kick_damage, speed, power)
+        (card_name, rarity, base_hp, base_attack, base_defense, punch_damage, kick_damage)
     )
     connection.commit()
 

@@ -35,48 +35,10 @@ def remove_card(discord_id, card_id):
 def get_inventory(discord_id):
     return db_get_inventory(discord_id)
 
-# Set card quantity
-def set_quantity(discord_id, card_id, quantity):
-    if quantity <= 0:
-        delete_inventory_card(discord_id, card_id)
-    else:
-        update_quantity(discord_id, card_id, quantity)
-
-# Increase card quantity
-def increase_quantity(discord_id, card_id, amount=1):
-    quantity = get_card_quantity(discord_id, card_id)
-    set_quantity(discord_id, card_id, quantity + amount)
-
-# Decrease card quantity
-def decrease_quantity(discord_id, card_id, amount=1):
-    quantity = get_card_quantity(discord_id, card_id)
-    new_quantity = quantity - amount
-    if new_quantity <= 0:
-        delete_inventory_card(discord_id, card_id)
-    else:
-        update_quantity(discord_id, card_id, new_quantity)
-
-# Delete card completely
-def delete_card(discord_id, card_id):
-    delete_inventory_card(discord_id, card_id)
-
-# Search inventory
-def search_inventory(discord_id, card_name):
-    inventory = db_get_inventory(discord_id)
-    results = []
-    for card in inventory:
-        if card_name.lower() in str(card).lower():
-            results.append(card)
-    return results
-
-# Sort inventory
-def sort_inventory(discord_id, key=None):
-    inventory = db_get_inventory(discord_id)
-    if key is None:
-        return inventory
-    return sorted(inventory, key=key)
-
-# Filter inventory
-def filter_inventory(discord_id, filter_function):
-    inventory = db_get_inventory(discord_id)
-    return list(filter(filter_function, inventory))
+#Get the quantity of a specific card in a player's inventory
+def get_card_quantity(discord_id, card_id):
+    row = get_inventory_row(discord_id, card_id)
+    if row:
+        # inventory_id, discord_id, card_id, quantity, xp, level, upgrade_stage
+        return row[3] 
+    return 0
